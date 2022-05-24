@@ -1,0 +1,117 @@
+specVersion: 0.0.2
+graft:
+  base: QmYzsCjrVwwXtdsNm3PZVNziLGmb9o513GUzkq5wwhgXDT
+  block: 13112565 # should break at 13112568
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: ProofOfHumanity
+    network: "mainnet"
+    source:
+      address: "0xc5e9ddebb09cd64dfacab4011a0d5cedaf7c9bdb"
+      abi: ProofOfHumanity
+      startBlock: 12011577
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - MetaEvidence
+        - Contract
+        - Submission
+        - Request
+        - Evidence
+        - Challenge
+        - Round
+        - Contribution
+        - Counter
+        - SubmissionsRegistry
+      abis:
+        - name: ProofOfHumanity
+          file: ./abis/proof-of-humanity.json
+      eventHandlers:
+        - event: MetaEvidence(indexed uint256,string)
+          handler: metaEvidence
+        - event: ArbitratorComplete(address,indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: arbitratorComplete
+        - event: VouchAdded(indexed address,indexed address)
+          handler: vouchAddedByChangeStateToPending
+      callHandlers:
+        - function: addSubmissionManually(address[],string[],string[])
+          handler: addSubmissionManually
+        - function: removeSubmissionManually(address)
+          handler: removeSubmissionManually
+        - function: changeSubmissionBaseDeposit(uint256)
+          handler: changeSubmissionBaseDeposit
+        - function: changeDurations(uint64,uint64,uint64)
+          handler: changeDurations
+        - function: changeRequiredNumberOfVouches(uint64)
+          handler: changeRequiredNumberOfVouches
+        - function: changeSharedStakeMultiplier(uint256)
+          handler: changeSharedStakeMultiplier
+        - function: changeWinnerStakeMultiplier(uint256)
+          handler: changeWinnerStakeMultiplier
+        - function: changeLoserStakeMultiplier(uint256)
+          handler: changeLoserStakeMultiplier
+        - function: changeGovernor(address)
+          handler: changeGovernor
+        - function: changeMetaEvidence(string,string)
+          handler: changeMetaEvidence
+        - function: changeArbitrator(address,bytes)
+          handler: changeArbitrator
+        - function: addSubmission(string,string)
+          handler: addSubmission
+        - function: reapplySubmission(string,string)
+          handler: reapplySubmission
+        - function: removeSubmission(address,string)
+          handler: removeSubmission
+        - function: fundSubmission(address)
+          handler: fundSubmission
+        - function: addVouch(address)
+          handler: addVouch
+        - function: removeVouch(address)
+          handler: removeVouch
+        - function: withdrawSubmission()
+          handler: withdrawSubmission
+        - function: changeStateToPending(address,address[],bytes[],uint256[])
+          handler: changeStateToPending
+        - function: challengeRequest(address,uint8,address,string)
+          handler: challengeRequest
+        - function: fundAppeal(address,uint256,uint8)
+          handler: fundAppeal
+        - function: executeRequest(address)
+          handler: executeRequest
+        - function: processVouches(address,uint256,uint256)
+          handler: processVouches
+        - function: withdrawFeesAndRewards(address,address,uint256,uint256,uint256)
+          handler: withdrawFeesAndRewards
+        - function: rule(uint256,uint256)
+          handler: rule
+        - function: submitEvidence(address,string)
+          handler: submitEvidence
+      file: ./src/mapping.ts
+  - kind: ethereum/contract
+    name: KlerosLiquid
+    network: "mainnet"
+    source:
+      address: "0x988b3A538b618C7A603e1c11Ab82Cd16dbE28069"
+      abi: KlerosLiquid
+      startBlock: 7303699
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Contract
+        - Submission
+        - Challenge
+      abis:
+        - name: ProofOfHumanity
+          file: ./abis/proof-of-humanity.json
+        - name: KlerosLiquid
+          file: ./abis/kleros-liquid.json
+      eventHandlers:
+        - event: AppealPossible(indexed uint256,indexed address)
+          handler: handleAppealPossible
+      file: ./src/mapping.ts

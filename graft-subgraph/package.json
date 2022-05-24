@@ -1,0 +1,14 @@
+{
+  "name": "poh",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy0": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ evaporei/Poh0 subgraph0.yaml",
+    "deploy1": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ evaporei/Poh1 subgraph1.yaml"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.21.2",
+    "@graphprotocol/graph-ts": "0.20.1"
+  }
+}
