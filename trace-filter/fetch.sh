@@ -12,11 +12,13 @@ MAINNET_URL=$1
 # - 0xB81384 = 12063620
 # - 0xC814F8 = 13112568 
 # - 0xD87421 = 14185505 // last change for entity Contract
+# - 0xDAAB83 = 14330755 // where it changed on chain (but graph-node somehow didn't track it)
 
 # FROM_TO_BLOCK="0xB74839" # contract creation/init
 # FROM_TO_BLOCK="0xB81384"
 FROM_TO_BLOCK="0xC814F8"
 # FROM_TO_BLOCK="0xD87421"
+# FROM_TO_BLOCK="0xDAAB83"
 
 # Contracts:
 # - 0xc5e9ddebb09cd64dfacab4011a0d5cedaf7c9bdb = ProofOfHumanity
