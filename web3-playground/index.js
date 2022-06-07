@@ -22,7 +22,9 @@ async function main() {
     // options
     null,
     // defaultBlock
-    '14185505',// last change in entity
+    // '14922135',// latest
+    '14330755',// where it changes
+    // '14185505',// last change in entity
     // '12011577',// at contract creation
   )
 
