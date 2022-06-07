@@ -8,9 +8,11 @@ set -e
 MAINNET_URL=$1
 
 # Blocks:
+# - 0xB74839 = 12011577
 # - 0xB81384 = 12063620
 # - 0xC814F8 = 13112568 
 
+# FROM_TO_BLOCK="0xB74839" # contract creation/init
 # FROM_TO_BLOCK="0xB81384"
 FROM_TO_BLOCK="0xC814F8"
 
