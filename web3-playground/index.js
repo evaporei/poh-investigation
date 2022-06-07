@@ -28,6 +28,7 @@ async function main() {
     // '12011577',// at contract creation
   )
 
+  // 31557600 or 63115200
   console.log(submissionDuration)
 }
 
